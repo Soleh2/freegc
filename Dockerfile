@@ -1,5 +1,4 @@
-
-FROM node:16.6.1-buster
+FROM nikolaik/python-nodejs:latest
 
 RUN apt-get update && \
   apt-get install -y \
@@ -12,11 +11,20 @@ RUN apt-get update && \
   rm -rf /var/lib/apt/lists/*
 
 COPY package.json .
-RUN npm install -g npm@7.20.5
 RUN npm install
+#RUN npm install -g npm-check-updates
+#RUN ncu --upgrade
+#RUN npm install libwebp
 
-COPY . .
+RUN mkdir /Alphab0t9
+WORKDIR /Alphab0t9
+COPY . /Alphab0t9
+RUN python3 -m pip install -r /Alphab0t9/requirements.txt
+ENV TZ=Asia/Jakarta
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+RUN ls
 
 EXPOSE 5000
 
-CMD ["node", "index"]`
+CMD ["npm", "start"]
