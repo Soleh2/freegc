@@ -19,7 +19,6 @@ RUN npm install
 RUN mkdir /Alphab0t9
 WORKDIR /Alphab0t9
 COPY . /Alphab0t9
-RUN python3 -m pip install -r /Alphab0t9/requirements.txt
 ENV TZ=Asia/Jakarta
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
