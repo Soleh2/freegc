@@ -14,7 +14,6 @@ COPY package.json .
 RUN npm install
 #RUN npm install -g npm-check-updates
 #RUN ncu --upgrade
-#RUN npm install ffmpeg
 #RUN npm install libwebp
 
 RUN mkdir /Alphab0t9
