@@ -1,5 +1,4 @@
-
-FROM node:16.6.1-buster
+FROM nikolaik/python-nodejs:latest
 
 RUN apt-get update && \
   apt-get install -y \
@@ -15,10 +14,17 @@ COPY package.json .
 RUN npm install
 #RUN npm install -g npm-check-updates
 #RUN ncu --upgrade
+#RUN npm install ffmpeg
 #RUN npm install libwebp
+
+RUN mkdir /Alphab0t9
+WORKDIR /Alphab0t9
+COPY . /Alphab0t9
+ENV TZ=Asia/Jakarta
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN ls
 
 EXPOSE 5000
 
-CMD ["npm", "start"]`
+CMD ["npm", "start"]
